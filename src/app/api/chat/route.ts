@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import path from 'path';
+import fs from 'fs';
 
 const execPromise = promisify(exec);
 
@@ -23,7 +24,6 @@ export async function POST(request: NextRequest) {
     const tempFilePath = path.resolve(process.cwd(), 'temp_message.txt');
     
     // Write the message to a temporary file
-    const fs = require('fs');
     fs.writeFileSync(tempFilePath, message);
     
     // Execute the Python script with the message as input
